@@ -21,7 +21,7 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
 9. Back to `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
   9.1 In the virtual console as `vagrant` user run the exploit: ./exploit <br/>
   9.2 Show the Privilege Escalation from the exploit, after few seconds (about 10 seconds)<br/>
-the exploit will generate a Kernel panic <br/>
+      the exploit will generate a Kernel panic <br/>
   9.3 In your laptop try to open the URL `http://localhost:8000/` until `can't accesss site` message appears <br/>
   9.4 Power off `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
 10. Power Up `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
