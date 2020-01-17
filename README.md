@@ -31,7 +31,7 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
   5.4 In your laptop try to open the URL `http://localhost:8000/` until `can't accesss site` message appears <br/>
   5.5 Power off `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
 6. Power Up `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
-7. Run `vagrant up; vagrant ssh` <br/>
+7. Run `vagrant ssh` <br/>
 8. Within the guest, Show the  installed kernel using the `uname -r` <br/>
   8.1 Within the guest as root user patch online the kernel using `uptrack-upgrade -v` command <br/>
   8.1.1 Show the updated Kernel running with the command `uptrack-uname -r` <br/>
