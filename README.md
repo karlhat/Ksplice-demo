@@ -24,7 +24,7 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
 9. Back to `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
   9.1 `Inspect the Oracle Linux server` <br/>
     Use the Ksplice Inspector to review the security patches available for the installed kernel on the server, this can be done online via the [Ksplice inspector online](http://ksplice.oracle.com/inspector)  or via a CLI command connecting to the Ksplice API server.In the list with available Ksplice updates you will find several CVEs including the one We are interested in (CVE-2016-5195)
-  9.2 In the virtual console as `vagrant` user run the exploit: ./exploit <br/>  
+  9.2 In the virtual console as `vagrant` user run the exploit: ./exploit 
   9.3 Show the Privilege Escalation from the exploit, after few seconds (about 30 seconds)<br/>
       the exploit will generate a Kernel panic <br/>
   9.4 In your laptop try to open the URL `http://localhost:8000/` until `can't accesss site` message appears <br/>
