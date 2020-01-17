@@ -3,9 +3,10 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
 
 
 ## Prerequisites
-1. Install [Oracle VM VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-2. Install [Vagrant](https://vagrantup.com/)
-3. A valid Ksplice Access Key, retrive it from [KSplice](http://ksplice.oracle.com/)
+1. Install [Oracle VM VirtualBox](https://www.virtualbox.org/wiki/Downloads) on your Host
+2. Install [Vagrant](https://vagrantup.com/) on your Host
+3. Install [Git](https://git-scm.com/downloads) on your host
+4. A valid Ksplice Access Key, retrieve it from [KSplice Web Site](http://ksplice.oracle.com/)
 
 ## Getting started
 1. Clone this repository `git clone https://github.com/karlhat/Ksplice-demo.git`
@@ -16,8 +17,24 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
 5. Open the VirtualBox Manager
 6. Double click on `ksplice-demo` Virtual Machine
 7. Login as `vagrant` user with password `Welcome1`
-8. In your laptop open  the URL `http://localhost:8000/`
-9. 
+8. In your laptop open the URL `http://localhost:8000/`
+9. Back to `ksplice-demo` Virtual Machine by VirtualBox Manager,
+9.1 In the virtual console as `vagrant` user run the exploit: ./exploit
+9.2 Show the Privilege Escalation from the exploit, after few seconds (about 10 seconds) the exploit will generate a Kernel panic
+9.3 In your laptop try to open the URL `http://localhost:8000/` until `can't accesss site` message appears 
+9.4 Power off `ksplice-demo` Virtual Machine by VirtualBox Manager
+10. Power Up `ksplice-demo` Virtual Machine by VirtualBox Manager
+11. Run `vagrant up; vagrant ssh`
+12 Within the guest, Show the  installed kernel using the `uname -r`
+12.1 Within the guest as root user patch online the kernel using `uptrack-upgrade -v` command
+12.1.1 Show the updated Kernel running with the command `uptrack-uname -r`
+12.1.2 Back to `ksplice-demo` Virtual Machine by VirtualBox Manager
+12.1.3 Login as `vagrant` user with password `Welcome1`
+12.1.4 In the virtual console as `vagrant` user run the exploit: ./exploit
+12.1.5 Explain to customer the vulnerability was fixed without reboot
+13. In your laptop open the URL `http://localhost:8000/`
+
+
 
 
 ## Feedback
