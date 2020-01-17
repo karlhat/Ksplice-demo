@@ -19,15 +19,13 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
 ### Running the demo
 6. Double click on `ksplice-demo` Virtual Machine
 7. Login as `vagrant` user with password `Welcome1`
-8. In your laptop open the URL `http://localhost:8000/`, tell to customer that web portal is running on Oracle Linux VM
+8. In your laptop open the URL `http://localhost:8000/` <br/>
+    tell to customer that web portal is running on Oracle Linux vm
 9. Back to `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
-  9.1 `Inspect the Oracle Linux server`
-     Use the Ksplice Inspector to review the security patches available for the installed kernel on the server.<br/>
-     This can be done online via the [Ksplice inspector online](http://ksplice.oracle.com/inspector)  or via a CLI command .<br/>
-     connecting to the Ksplice API server.In the list with available Ksplice updates you will find several CVEs including the one <br/>
-     We are interested in (CVE-2016-5195 or CVE-2017-14489)<br/>
+  9.1 `Inspect the Oracle Linux server` <br/>
+    Use the Ksplice Inspector to review the security patches available for the installed kernel on the server, this can be done online via the [Ksplice inspector online](http://ksplice.oracle.com/inspector)  or via a CLI command connecting to the Ksplice API server.In the list with available Ksplice updates you will find several CVEs including the one We are interested in (CVE-2016-5195)
   9.2 In the virtual console as `vagrant` user run the exploit: ./exploit <br/>  
-  9.3 Show the Privilege Escalation from the exploit, after few seconds (about 10 seconds)<br/>
+  9.3 Show the Privilege Escalation from the exploit, after few seconds (about 30 seconds)<br/>
       the exploit will generate a Kernel panic <br/>
   9.4 In your laptop try to open the URL `http://localhost:8000/` until `can't accesss site` message appears <br/>
   9.5 Power off `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
