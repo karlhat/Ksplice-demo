@@ -9,15 +9,17 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
 4. A valid Ksplice Access Key, retrieve it from [KSplice Web Site](http://ksplice.oracle.com/)
 
 ## Getting started
+### Before to run demo
 1. Clone this repository `git clone https://github.com/karlhat/Ksplice-demo.git`
 2. Change into the `Ksplice-demo` folder
 3. Run `vagrant up; vagrant ssh`
 4. Within the guest, as `root` with password `Welcome1`  run the following command:<br/>
   4.1  [root@ksplice-demo ~]# bash install_ksplice.sh
 5. Open the VirtualBox Manager
+### Running the demo
 6. Double click on `ksplice-demo` Virtual Machine
 7. Login as `vagrant` user with password `Welcome1`
-8. In your laptop open the URL `http://localhost:8000/`
+8. In your laptop open the URL `http://localhost:8000/`, tell to customer that web portal is running on Oracle Linux VM
 9. Back to `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
   9.1 In the virtual console as `vagrant` user run the exploit: ./exploit <br/>
   9.2 Show the Privilege Escalation from the exploit, after few seconds (about 10 seconds)<br/>
