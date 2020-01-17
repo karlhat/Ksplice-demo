@@ -14,7 +14,7 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
 2. Change into the `Ksplice-demo` folder
 3. Run `vagrant up; vagrant ssh`
 4. Within the guest, as `root` with password `Welcome1`  run the following command:<br/>
-  4.1  [root@ksplice-demo ~]# bash install_ksplice.sh
+  4.1  [root@ksplice-demo ~]# bash install_ksplice.sh <br/>
   4.2  [root@ksplice-demo ~]# uptrack-upgrade -n  
  5. Open the VirtualBox Manager
 ### Running the demo
@@ -43,7 +43,7 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
 ## clean up
  Remove  applied kernel patches using the following command:
  
- [root@ksplice-demo ~]# uptrack-remove  --all 
+ `[root@ksplice-demo ~]# uptrack-remove  --all `
 
 
 ## Feedback
