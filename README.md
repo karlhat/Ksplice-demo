@@ -40,7 +40,7 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
   12.1.5 Explain to customer the vulnerability was fixed without reboot <br/>
 13. In your laptop open the URL `http://localhost:8000/` <br/>
 
-##clean up
+## clean up
  Remove  applied kernel patches using the following command:
  
  [root@ksplice-demo ~]# uptrack-remove  --all 
