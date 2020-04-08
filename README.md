@@ -1,5 +1,5 @@
 # Ksplice-demo
-ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.el7 from ol7_u1_base repo for a ksplice demo
+ksplice-demo Vagrant box installs Oracle Linux 8.0  to run a ksplice demo
 
 
 ## Prerequisites
