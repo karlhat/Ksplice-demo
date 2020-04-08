@@ -33,6 +33,7 @@ yum install php-json -y
 yum install php-xml -y
 yum install php-pdo -y
 yum install php-mbstring -y
+yum install sqlite -y
 systemctl start httpd
 systemctl enable httpd
 cd /var/www/ && { git clone https://github.com/ilosuna/phpsqlitecms.git ; mv /var/www/html{,.old}; ln -s /var/www/phpsqlitecms /var/www/html; }
