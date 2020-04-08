@@ -25,10 +25,10 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
     tell to customer that web portal is running on Oracle Linux vm
 5. Back to `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
   5.1 `Inspect the Oracle Linux server` <br/>
-    Use the Ksplice Inspector to review the security patches available for the installed kernel on the server, this can be done online via the [Ksplice inspector online](http://ksplice.oracle.com/inspector)  or via a CLI command connecting to the Ksplice API server.In the list with available Ksplice updates you will find several CVEs including the one We are interested in (CVE-2019-13272)
+    Use the Ksplice Inspector to review the security patches available for the installed kernel on the server, this can be done online via the [Ksplice inspector online](http://ksplice.oracle.com/inspector)  or via a CLI command connecting to the Ksplice API server.In the list with available Ksplice updates you will find several CVEs including the one We are interested in (CVE-2019-13272).<br/>    
   5.2 In a gnome-terminal console within the VM as `vagrant` user run the exploit: ./exploit <br/>
   5.3 Show the Privilege Escalation from the exploit <br/>
-  5.3.1 stop httpd service, 'systemctl stop httpd'
+  5.3.1 stop httpd service, `systemctl stop httpd` <br/>
   5.4 In your laptop try to open the URL `http://localhost:8000/` until `can't accesss site` message appears <br/>
   6. Within the gues show the  installed kernel using the `uname -r` <br/>
   6.1 Within the guest open another gnome-terminal, switch to root user then patch online the kernel using `uptrack-upgrade -vy` command <br/>
