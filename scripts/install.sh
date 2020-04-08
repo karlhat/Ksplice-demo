@@ -2,7 +2,7 @@
 
 #
 # 
-# Description: ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.el7 from ol7_u1_base repo for a ksplice demo
+# Description: ksplice-demo Vagrant box installs Oracle Linux 8.0 for a ksplice demo
 # Author: Carlos Alberto Ramirez Rendon
 # 
 #
@@ -14,9 +14,15 @@ echo 'echo "";' >> /root/install_ksplice.sh
 echo ' sh install-uptrack ${REPLY}' >> /root/install_ksplice.sh
 echo ""
 
-
+#enable repos
+yum config-manager --enable ol8_appstream
+yum config-manager --enable ol8_baseos_latest
 # configuring and installing Ksplice
 yum clean all
+
+#install GUI
+
+yum groupinstall -y "Server with GUI"
 
 echo 'Installing packages required'
 yum install git  -y
@@ -37,15 +43,35 @@ sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
 
 #MOTD
 
-echo "Welcome to Oracle Linux Server release 7" > /etc/motd
+echo "Welcome to Oracle Linux Server release 8" > /etc/motd
 echo "" >> /etc/motd
 echo "#####################################################################################################################"  >> /etc/motd
 echo '* Double click on ksplice-demo vm, then loggin as vagrant user password Welcome1' >> /etc/motd 
 echo "  - Run the /root/install_ksplice.sh script and provide a valid Ksplice Access Key as root user to install Ksplice" >> /etc/motd
 
- 
-yum --enablerepo=ol7_u1_base install kernel-3.10.0-229.el7 -y
-grub2-set-default 0
+systemctl set-default graphical.target
+
+####tune screen
+cat << EOF > /etc/gdm/custom.conf
+[daemon]
+# Uncoment the line below to force the login screen to use Xorg
+WaylandEnable=false
+DefaultSession=gnome=xorg.desktop
+[security]
+
+[xdmcp]
+
+[chooser]
+
+[debug]
+# Uncomment the line below to turn on debugging
+#Enable=true
+
+
+EOF
+
+grub2-set-default 1
+
 
 #setting password for  Vagrant user
 echo "Welcome1" | passwd --stdin vagrant
@@ -53,8 +79,8 @@ echo "Welcome1" | passwd --stdin root
 
 #building exploit
 echo "Building exploit"
-su - vagrant -c "git clone https://gist.github.com/e9d4ff65d703a9084e85fa9df083c679.git"
-su - vagrant -c "gcc -pthread /home/vagrant/e9d4ff65d703a9084e85fa9df083c679/cowroot.c  -o ~/exploit"
+su - vagrant -c "git clone https://github.com/nu11secur1ty/Ubuntu.git"
+su - vagrant -c "gcc  /home/vagrant/Ubuntu/CVE-2019-13272/CVE-2019-13272.c  -o ~/exploit"
 
 clear
 echo ""
@@ -62,7 +88,7 @@ echo ""
 echo "##################################################################"
 echo 'OL ksplice demo VM will be ready after reboot'
 echo 'To get started, on your VirtualBox Manager :'
-echo '  Double click on ksplice-demo vm, then loggin as vagrant user password Welcome1'
+echo '  Double click on ksplice-demo VM, then loggin as vagrant user password Welcome1'
 echo "  Run the /root/install_ksplice.sh script and provide a valid Ksplice Access Key as root user to install Ksplice"
 sleep 3
 echo ' rebooting VM'
