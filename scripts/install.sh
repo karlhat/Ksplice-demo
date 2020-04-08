@@ -80,6 +80,7 @@ echo "Welcome1" | passwd --stdin root
 echo "Building exploit"
 su - vagrant -c "git clone https://github.com/nu11secur1ty/Ubuntu.git"
 su - vagrant -c "gcc  /home/vagrant/Ubuntu/CVE-2019-13272/CVE-2019-13272.c  -o ~/exploit"
+rm -rf /home/vagrant/Ubuntu/
 
 clear
 echo ""
