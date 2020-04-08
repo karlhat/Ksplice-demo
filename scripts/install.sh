@@ -33,6 +33,7 @@ yum install php-json -y
 yum install php-xml -y
 yum install php-pdo -y
 yum install php-mbstring -y
+yum install php-fpm -y
 yum install sqlite -y
 systemctl start httpd
 systemctl enable httpd
