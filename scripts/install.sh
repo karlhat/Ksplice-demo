@@ -24,14 +24,13 @@ yum clean all
 
 yum groupinstall -y "Server with GUI"
 
-echo 'Installing packages required'
+echo 'Installing packages required for webapp demo'
 yum install git  -y
 yum install gcc -y 
 yum install httpd  -y
-yum install -y oracle-php-release-el7
 yum install php  -y
 yum install php-json -y
-yum install php-ZendFramework2-Dom  -y
+yum install php-xml -y
 yum install php-pdo -y
 yum install php-mbstring -y
 systemctl start httpd
