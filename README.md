@@ -25,21 +25,17 @@ ksplice-demo Vagrant box installs Oracle Linux 7 latest with kernel-3.10.0-229.e
     tell to customer that web portal is running on Oracle Linux vm
 5. Back to `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
   5.1 `Inspect the Oracle Linux server` <br/>
-    Use the Ksplice Inspector to review the security patches available for the installed kernel on the server, this can be done online via the [Ksplice inspector online](http://ksplice.oracle.com/inspector)  or via a CLI command connecting to the Ksplice API server.In the list with available Ksplice updates you will find several CVEs including the one We are interested in (CVE-2016-5195)
-  5.2 In the virtual console as `vagrant` user run the exploit: ./exploit <br/>
-  5.3 Show the Privilege Escalation from the exploit, after few seconds (about 30 seconds) the exploit will generate a Kernel panic <br/>
+    Use the Ksplice Inspector to review the security patches available for the installed kernel on the server, this can be done online via the [Ksplice inspector online](http://ksplice.oracle.com/inspector)  or via a CLI command connecting to the Ksplice API server.In the list with available Ksplice updates you will find several CVEs including the one We are interested in (CVE-2019-13272)
+  5.2 In a gnome-terminal console within the VM as `vagrant` user run the exploit: ./exploit <br/>
+  5.3 Show the Privilege Escalation from the exploit <br/>
+  5.3.1 stop httpd service, 'systemctl stop httpd'
   5.4 In your laptop try to open the URL `http://localhost:8000/` until `can't accesss site` message appears <br/>
-  5.5 Power off `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
-6. Power Up `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
-7. Run `vagrant ssh` <br/>
-8. Within the guest, Show the  installed kernel using the `uname -r` <br/>
-  8.1 Within the guest as root user patch online the kernel using `uptrack-upgrade -v` command <br/>
-  8.1.1 Show the updated Kernel running with the command `uptrack-uname -r` <br/>
-  8.1.2 Back to `ksplice-demo` Virtual Machine by VirtualBox Manager <br/>
-  8.1.3 Login as `vagrant` user with password `Welcome1` <br/>
-  8.1.4 In the virtual console as `vagrant` user run the exploit: ./exploit <br/>
-  8.1.5 Explain to customer the vulnerability was fixed without reboot <br/>
-9. In your laptop open the URL `http://localhost:8000/` <br/>
+  6. Within the gues show the  installed kernel using the `uname -r` <br/>
+  6.1 Within the guest open another gnome-terminal, switch to root user then patch online the kernel using `uptrack-upgrade -vy` command <br/>
+  6.1.1 Show the updated Kernel running with the command `uptrack-uname -r` <br/>
+  6.1.2  As `vagrant` user open a new gnome-terminal run the exploit: ./exploit <br/>
+  6.1.3 Explain to customer the vulnerability was fixed without reboot <br/>
+
 
 ## clean up
  Remove  applied kernel patches using the following command:
