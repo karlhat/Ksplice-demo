@@ -1,5 +1,5 @@
 # 
-# Description: Creates an Oracle Linux Cloud Native Developer VM
+# Description: Creates an Oracle Linux VM for Ksplice Demo
 # 
 # 
 
@@ -13,8 +13,8 @@ VAGRANTFILE_API_VERSION = "2"
 NAME = "ksplice-demo"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ol7-latest"
-  config.vm.box_url = "https://yum.oracle.com/boxes/oraclelinux/latest/ol7-latest.box"
+  config.vm.box = "ol8.0-latest"
+  config.vm.box_url = "https://yum.oracle.com/boxes/oraclelinux/ol80/ol80.box"
   config.vm.define NAME
   
   config.vm.box_check_update = false
