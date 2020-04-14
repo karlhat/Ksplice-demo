@@ -6,7 +6,8 @@
 # Author: Carlos Alberto Ramirez Rendon
 # 
 #
-# Changelog:
+# Marcos Sungaila
+#Changelog:
 # apr.14.2020: - enabling sshd password access
 #              - disabling SELinux
 #              - fixing cms admin access
