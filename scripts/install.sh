@@ -102,16 +102,18 @@ EOF
 
 grub2-set-default 1
 
-
-#setting password for  Vagrant user
+#adding user demo
+useradd demo
+#setting password for users 
+echo "Welcome1" | passwd --stdin demo
 echo "Welcome1" | passwd --stdin vagrant
 echo "Welcome1" | passwd --stdin root 
 
 #building exploit
 echo "Building exploit"
-su - vagrant -c "git clone https://github.com/nu11secur1ty/Ubuntu.git"
-su - vagrant -c "gcc  /home/vagrant/Ubuntu/CVE-2019-13272/CVE-2019-13272.c  -o ~/exploit"
-rm -rf /home/vagrant/Ubuntu/
+su - demo -c "git clone https://github.com/nu11secur1ty/Ubuntu.git"
+su - demo -c "gcc  /home/demo/Ubuntu/CVE-2019-13272/CVE-2019-13272.c  -o ~/exploit"
+rm -rf /home/demo/Ubuntu/
 
 clear
 echo ""
