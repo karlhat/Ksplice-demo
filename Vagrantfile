@@ -13,6 +13,11 @@ VAGRANTFILE_API_VERSION = "2"
 NAME = "ksplice-demo"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    config.vbguest.auto_update = false
+  end
+
   config.vm.box = "ol8.0-latest"
   config.vm.box_url = "https://yum.oracle.com/boxes/oraclelinux/ol80/ol80.box"
   config.vm.define NAME
@@ -23,8 +28,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048
     v.name = NAME
+    v.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
     v.customize ["modifyvm", :id, "--vram", "128"]
-  end
+    v.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    v.customize ["modifyvm", :id, "--nictype2", "virtio"]
+   end
 
   # VM hostname
   config.vm.hostname = NAME
