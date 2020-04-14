@@ -6,11 +6,20 @@
 # Author: Carlos Alberto Ramirez Rendon
 # 
 #
+# Changelog:
+# apr.14.2020: - enabling sshd password access
+#              - disabling SELinux
+#              - fixing cms admin access
+#                . fixing permissions/ownership under /var/www/html/cms
+#                . creating files and media directories under /var/www/html/cms
+#              - adjusting MOTD exhibition to fit in 80 columns ssh terminal
+# 
 
 echo "Configuring Ksplice script setup..."
 echo 'wget -N https://www.ksplice.com/uptrack/install-uptrack' > /root/install_ksplice.sh
 echo 'read  -p "Type a valid Ksplice Access Key and press Enter: " ' >> /root/install_ksplice.sh
 echo 'echo "";' >> /root/install_ksplice.sh
+echo '# do not add --autoinstall option to uptrack installation script' >> /root/install_ksplice.sh
 echo ' sh install-uptrack ${REPLY}' >> /root/install_ksplice.sh
 echo ""
 
@@ -35,20 +44,39 @@ yum install php-pdo -y
 yum install php-mbstring -y
 yum install php-fpm -y
 yum install sqlite -y
-systemctl start httpd
-systemctl enable httpd
-cd /var/www/ && { git clone https://github.com/ilosuna/phpsqlitecms.git ; mv /var/www/html{,.old}; ln -s /var/www/phpsqlitecms /var/www/html; }
+systemctl enable --now httpd
 
-#Settig SELinux in permissive mode
-sed -i 's/^SELINUX=.*/SELINUX=permissive/g' /etc/selinux/config
+
+cd /var/www/ && { git clone https://github.com/ilosuna/phpsqlitecms.git ; mv /var/www/html{,.old}; ln -s /var/www/phpsqlitecms /var/www/html; }
+cd /var/www/html/cms/
+mkdir files media
+chgrp -R apache cache data files media
+chmod 2775 cache data files media
+chmod 664 data/*.sqlite
+
+
+# Disabling SELinux, permisse mode increase disk I/O 
+sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
+
+
+# Enabling sshd password access
+sed -re 's/^(PasswordAuthentication)([[:space:]]+)no/\1\2yes/' -i.`date -I` /etc/ssh/sshd_config
+systemctl restart sshd.service 2>&1 | tee -a /tmp/bootstrap.log
+
 
 #MOTD
 
-echo "Welcome to Oracle Linux Server release 8" > /etc/motd
+echo "" > /etc/motd
+echo "Welcome to Oracle Linux Server release 8" >> /etc/motd
 echo "" >> /etc/motd
-echo "#####################################################################################################################"  >> /etc/motd
-echo '* Double click on ksplice-demo vm, then loggin as vagrant user password Welcome1' >> /etc/motd 
-echo "  - Run the /root/install_ksplice.sh script and provide a valid Ksplice Access Key as root user to install Ksplice" >> /etc/motd
+echo "
+########################################################################" >> /etc/motd
+echo '* Double click on ksplice-demo vm, then login as vagrant user with' >> /etc/motd 
+echo '  password Welcome1' >> /etc/motd 
+echo "" >> /etc/motd
+echo "- Run the /root/install_ksplice.sh script and provide a valid Ksplice" >> /etc/motd
+echo "  Access Key as root user to install Ksplice" >> /etc/motd
+echo "" >> /etc/motd
 
 systemctl set-default graphical.target
 
