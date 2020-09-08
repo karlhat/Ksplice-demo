@@ -72,7 +72,7 @@ echo "Welcome to Oracle Linux Server release 8" >> /etc/motd
 echo "" >> /etc/motd
 echo "
 ########################################################################" >> /etc/motd
-echo '* Double click on ksplice-demo vm, then login as vagrant user with' >> /etc/motd 
+echo '* Double click on ksplice-demo vm, then login as demo user with' >> /etc/motd 
 echo '  password Welcome1' >> /etc/motd 
 echo "" >> /etc/motd
 echo "- Run the /root/install_ksplice.sh script and provide a valid Ksplice" >> /etc/motd
